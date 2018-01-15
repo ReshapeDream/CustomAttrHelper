@@ -17,13 +17,13 @@ Step 2. Add the dependency
 	        compile 'com.github.ReshapeDream:CustomAttrHelper:v1.0.3'
 	}
 ```
-2.在attr.xml自定义属性
-···
-<item name="test1" format="float"/>
-<item name="test2" format="string"/>
-<item name="test3" format="int"/>
-<item name="test4" format="color"/>
-<item name="test5" format="boolean"/>
+2.在attr.xml自定义属性</br>
+```
+	<item name="test1" format="float"/>
+	<item name="test2" format="string"/>
+	<item name="test3" format="int"/>
+	<item name="test4" format="color"/>
+	<item name="test5" format="boolean"/>
 ```
 3.在布局文件中使用自定义属性</br>
 4.在Activity或Fragment中替换LayoutInflater
@@ -46,32 +46,32 @@ setContentView(inflate);
 5.使用自定义的属性
 ```
 ArrayList<CustomAttr> tag = (ArrayList<CustomAttr>) view.getTag(CustomAttrsLayoutInflater.getTagId());
-        if(tag==null||tag.size()==0){
-            return;
-        }
-        for (CustomAttr customAttr : tag) {
-            switch (customAttr.attrId) {
-                case R.attr.test1:
-                    float f=customAttr.getFloatValue();
-                    //TodoSomething
-                    break;
-                case R.attr.test2:
-                    String str=customAttr.getStringValue();
-                    //TodoSomething
-                    break;
-                case R.attr.test3:
-                    int i=customAttr.getIntValue();
-                    //TodoSomething
-                    break;
-                case R.attr.test4:
-                    int color=customAttr.getIntValue();
-                    //TodoSomething
-                    break;
-                case R.attr.test5:
-                    boolean b=customAttr.getBooleanValue();
-                    //TodoSomething
-                    break;
-            }
-        }
-        ```
+	if(tag==null||tag.size()==0){
+	    return;
+	}
+	for (CustomAttr customAttr : tag) {
+	    switch (customAttr.attrId) {
+		case R.attr.test1:
+		    float f=customAttr.getFloatValue();
+		    //TodoSomething
+		    break;
+		case R.attr.test2:
+		    String str=customAttr.getStringValue();
+		    //TodoSomething
+		    break;
+		case R.attr.test3:
+		    int i=customAttr.getIntValue();
+		    //TodoSomething
+		    break;
+		case R.attr.test4:
+		    int color=customAttr.getIntValue();
+		    //TodoSomething
+		    break;
+		case R.attr.test5:
+		    boolean b=customAttr.getBooleanValue();
+		    //TodoSomething
+		    break;
+	    }
+	}
+```
 
