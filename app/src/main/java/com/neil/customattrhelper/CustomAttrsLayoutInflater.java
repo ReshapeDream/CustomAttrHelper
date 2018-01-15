@@ -8,25 +8,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author nzbao
  * @CreateTime 2018/1/12
  * @Desc
  */
-public class CustomAttrsLayoutInflater<T> extends LayoutInflater {
+public class CustomAttrsLayoutInflater extends LayoutInflater {
     private CustomAttr[] customAttrs;
 
-    private int tagId;
+    private static int tagId = R.id.customAttrTagId;
 
-    private T t;
+    private List<OnViewCreateListener> listeners=new ArrayList<>();
+
     private String TAG = this.getClass().getSimpleName();
-
-    public CustomAttrsLayoutInflater(LayoutInflater original, Context newContext, T t) {
-        super(original, newContext);
-        this.t = t;
-        setFactory(new CustomAttrsFactory(this));
-    }
 
 
     public CustomAttrsLayoutInflater(LayoutInflater original, Context newContext) {
@@ -37,6 +33,16 @@ public class CustomAttrsLayoutInflater<T> extends LayoutInflater {
     @Override
     public LayoutInflater cloneInContext(Context newContext) {
         return new CustomAttrsLayoutInflater(this, newContext);
+    }
+
+    public void addOnViewCreateListener(OnViewCreateListener listener){
+        listeners.add(listener);
+    }
+
+    public void removeOnViewCreateListener(OnViewCreateListener listener){
+        if(listeners.contains(listener)){
+            listeners.remove(listener);
+        }
     }
 
     public void setTagId(int tagId) {
@@ -111,12 +117,11 @@ public class CustomAttrsLayoutInflater<T> extends LayoutInflater {
                 typedArray.recycle();
             }
             if (tag.size() > 0) {
-                if (tagId == 0) {
-                    tagId = R.id.customAttrTagId;
-                }
                 view.setTag(tagId, tag);
-                if (t != null && OnViewCreateListener.class.isAssignableFrom(t.getClass())) {
-                    ((OnViewCreateListener) t).onViewCreated(view);
+                if(listeners.size()>0){
+                    for (int i = listeners.size() - 1; i >= 0; i--) {
+                        listeners.get(i).onViewCreated(view);
+                    }
                 }
             }
         }
