@@ -30,7 +30,7 @@ public class CustomAttr {
     }
 
     public float getFloatValue() {
-        if (valueType == TypedValue.TYPE_FLOAT)
+        if (valueType == TypedValue.TYPE_FLOAT||valueType==TypedValue.TYPE_DIMENSION)
             return (float) value;
         return 0f;
     }
