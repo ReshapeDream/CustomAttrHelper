@@ -2,7 +2,7 @@
 android 自定义属性帮助类
 
 使用步骤</br>
-1.[引入](https://jitpack.io/#ReshapeDream/CustomAttrHelper/v1.0.3)</br>
+1.[引入](https://jitpack.io/#ReshapeDream/CustomAttrHelper/v1.0.5)</br>
 ```
 Step 1. Add it in your root build.gradle at the end of repositories:
 	allprojects {
@@ -14,7 +14,7 @@ Step 1. Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        compile 'com.github.ReshapeDream:CustomAttrHelper:v1.0.3'
+	        compile 'com.github.ReshapeDream:CustomAttrHelper:v1.0.5'
 	}
 ```
 2.在attr.xml自定义属性</br>
