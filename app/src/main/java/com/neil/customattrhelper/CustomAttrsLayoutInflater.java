@@ -23,7 +23,10 @@ public class CustomAttrsLayoutInflater extends LayoutInflater {
     private List<OnViewCreateListener> listeners=new ArrayList<>();
 
     private String TAG = this.getClass().getSimpleName();
-
+    
+    public CustomAttrsLayoutInflater( Context newContext) {
+        this(LayoutInflater.from(newContext),newContext);
+    }
 
     public CustomAttrsLayoutInflater(LayoutInflater original, Context newContext) {
         super(original, newContext);
@@ -93,6 +96,9 @@ public class CustomAttrsLayoutInflater extends LayoutInflater {
                 }
                 CustomAttr attr = new CustomAttr(customAttrs[i].attrId, customAttrs[i].defaultValue);
                 switch (typedValue.type) {
+                    case TypedValue.TYPE_DIMENSION:
+                        attr.value=typedArray.getDimension(0,(int)customAttrs[i].defaultValue);
+                        break;
                     case TypedValue.TYPE_FLOAT://float
                         attr.value = typedArray.getFloat(0, (float) customAttrs[i].defaultValue);
                         break;
